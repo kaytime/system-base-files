@@ -1,0 +1,11 @@
+NAME="kaytime"
+VERSION="0.1.0"
+ID=kaytime
+ID_LIKE=ubuntu
+PRETTY_NAME="Kaytime OS v0.1.0"
+VERSION_ID="0.1.0"
+HOME_URL="https://kaytime.github.io/"
+SUPPORT_URL="https://kaytime.github.io/"
+BUG_REPORT_URL="https://github.com/kaytime/kaytime-bug-tracker"
+VERSION_CODENAME=kaytime
+UBUNTU_CODENAME=focal
