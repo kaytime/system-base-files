@@ -1,11 +1,11 @@
-Source: system-base-files
+Source: base-files
 Section: admin
 Priority: required
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Santiago Vila <sanvila@debian.org>
 Standards-Version: 3.9.8
 
-Package: system-base-files
+Package: base-files
 Provides: base
 Architecture: any
 Pre-Depends: awk

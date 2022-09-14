@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 
-package = system-base-files
+package = base-files
 docdir = debian/tmp/usr/share/doc/$(package)
 
 OSNAME = "GNU/`uname | sed -e 's/GNU\///'`"
