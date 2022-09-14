@@ -30,7 +30,7 @@ migrate_directory() {
 
 update_to_current_default() {
   if [ -f $2 ]; then
-    md5=`md5sum $2 | cut -f 1 -d " "`
+    md5=$(md5sum $2 | cut -f 1 -d " ")
     if grep -q "$md5" /usr/share/base-files/$1.md5sums; then
       if ! cmp -s /usr/share/base-files/$1 $2; then
         cp -p /usr/share/base-files/$1 $2
@@ -48,16 +48,16 @@ fi
 
 if [ "$1" = "configure" ] && [ "$2" = "" ]; then
   install_from_default nsswitch.conf /etc/nsswitch.conf
-  install_from_default dot.profile   /root/.profile
-  install_from_default dot.bashrc    /root/.bashrc
-  install_from_default profile       /etc/profile
-  install_from_default networks      /etc/networks
-  install_directory mnt       755 root
-  install_directory srv       755 root
-  install_directory opt       755 root
-  install_directory etc/opt   755 root
-  install_directory var/opt   755 root
-  install_directory media     755 root
+  install_from_default dot.profile /root/.profile
+  install_from_default dot.bashrc /root/.bashrc
+  install_from_default profile /etc/profile
+  install_from_default networks /etc/networks
+  install_directory mnt 755 root
+  install_directory srv 755 root
+  install_directory opt 755 root
+  install_directory etc/opt 755 root
+  install_directory var/opt 755 root
+  install_directory media 755 root
   install_directory var/mail 2775 mail
   if [ ! -L /var/spool/mail ]; then
     ln -s ../mail /var/spool/mail
@@ -79,19 +79,19 @@ if [ "$1" = "configure" ] && [ "$2" = "" ]; then
   ln -sf share/man /usr/local/man
 
   if [ ! -f /var/log/wtmp ]; then
-    echo -n>/var/log/wtmp
+    echo -n >/var/log/wtmp
   fi
   if [ ! -f /var/log/btmp ]; then
-    echo -n>/var/log/btmp
+    echo -n >/var/log/btmp
   fi
   if [ ! -f /var/log/lastlog ]; then
-    echo -n>/var/log/lastlog
+    echo -n >/var/log/lastlog
   fi
   chown root:utmp /var/log/wtmp /var/log/btmp /var/log/lastlog
   chmod 664 /var/log/wtmp /var/log/lastlog
   chmod 660 /var/log/btmp
   if [ ! -f /var/run/utmp ]; then
-    echo -n>/var/run/utmp
+    echo -n >/var/run/utmp
   fi
   chown root:utmp /var/run/utmp
   chmod 664 /var/run/utmp
@@ -101,7 +101,7 @@ if [ ! -d /var/lib/dpkg ]; then
   mkdir -m 755 -p /var/lib/dpkg
 fi
 if [ ! -f /var/lib/dpkg/status ]; then
-  echo > /var/lib/dpkg/status
+  echo >/var/lib/dpkg/status
   chmod 644 /var/lib/dpkg/status
 fi
 
@@ -116,12 +116,12 @@ if [ "$1" = "configure" ] && [ "$2" != "" ]; then
   # immediately (in the background) to update the flag.
   rm -f /var/lib/update-notifier/release-upgrade-available
   if [ -x /usr/lib/update-manager/check-new-release ]; then
-    /usr/lib/update-manager/check-new-release -q > /var/lib/update-notifier/release-upgrade-available  &
+    /usr/lib/update-manager/check-new-release -q >/var/lib/update-notifier/release-upgrade-available &
   fi
 
-  update_to_current_default profile       /etc/profile
+  update_to_current_default profile /etc/profile
   update_to_current_default nsswitch.conf /etc/nsswitch.conf
-  update_to_current_default dot.profile   /root/.profile
+  update_to_current_default dot.profile /root/.profile
   if dpkg --compare-versions "$2" lt-nl "7.7"; then
     install_directory mnt 755 root
   fi
